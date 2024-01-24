@@ -5,10 +5,10 @@ import { CheckCircleIcon } from '@heroicons/vue/24/solid/index.js'
 
 <template>
   <header class="sticky top-0 z-20 flex items-center justify-between border-b bg-white p-3">
-    <a href="#">
+    <a href="#1">
       <img alt="OnTrack logo" src="@/assets/img/logo.png" class="h-9" />
     </a>
-    <a href="#">
+    <a href="#2">
       <div v-if="true" class="flex items-center gap-1">
         Day completed!
         <CheckCircleIcon class="h-7 text-green-500" />
