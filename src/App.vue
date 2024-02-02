@@ -1,7 +1,7 @@
 <script setup>
 //Components
-import TheHeader from '@/components/TheHeader.vue'
-import TheNav from '@/components/TheNav.vue'
+import TheHeader from '@/components/Header/TheHeader.vue'
+import TheNav from '@/components/Navigation/TheNav.vue'
 </script>
 
 <template>
