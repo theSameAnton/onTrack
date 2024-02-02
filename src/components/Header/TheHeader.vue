@@ -7,6 +7,6 @@
 
 <script setup>
 //Components
-import TheLogo from '@/components/TheLogo.vue'
-import TheHeaderProgress from '@/components/TheHeaderProgress.vue'
+import TheLogo from '@/components/Header/TheLogo.vue'
+import TheHeaderProgress from '@/components/Header/TheHeaderProgress.vue'
 </script>
