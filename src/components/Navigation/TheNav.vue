@@ -42,5 +42,4 @@ const normalizeGetPath = () => {
 }
 
 const currentPage = ref(normalizeGetPath())
-
 </script>
