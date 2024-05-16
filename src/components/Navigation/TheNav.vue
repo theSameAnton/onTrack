@@ -6,7 +6,7 @@
         :key="page"
         :href="`#${page}`"
         :class="{ 'bg-gray-200 duration-150 pointer-events-none': page === currentPage }"
-        @click="currentPage = page"
+        @click="emit('navigate', page)"
       >
         <component :is="icons" class="h-6 w-6" />
         {{ page }}
@@ -17,11 +17,13 @@
 
 <script setup>
 //Components
-import { ChartBarIcon, ClockIcon, ListBulletIcon } from '@heroicons/vue/24/outline/index.js'
 import NavItem from '@/components/Navigation/NavItem.vue'
-
 import { PAGE } from '@/constants.js'
-import { ref } from 'vue'
+import { ChartBarIcon, ClockIcon, ListBulletIcon } from '@heroicons/vue/24/outline/index.js'
+
+const props = defineProps(['currentPage'])
+
+const emit = defineEmits(['navigate'])
 
 const navItems = {
   [PAGE.TIMELINE]: ClockIcon,
@@ -29,17 +31,5 @@ const navItems = {
   [PAGE.PROGRESS]: ChartBarIcon
 }
 
-const normalizeGetPath = () => {
-  const hash = window.location.hash.slice(1)
-
-  if (Object.keys(navItems).includes(hash)) {
-    return hash
-  }
-
-  window.location.hash = PAGE.TIMELINE
-
-  return PAGE.TIMELINE
-}
-
-const currentPage = ref(normalizeGetPath())
+defineExpose([props, navItems])
 </script>
