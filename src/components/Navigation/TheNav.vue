@@ -1,3 +1,14 @@
+<script setup>
+import NavItem from '@/components/Navigation/NavItem.vue'
+import { navItems } from '@/constants'
+
+const props = defineProps(['currentPage'])
+
+const emit = defineEmits(['navigate'])
+
+defineExpose([props, navItems])
+</script>
+
 <template>
   <nav class="sticky bottom-0 z-20 bg-white">
     <ul class="flex items-center justify-around border-t">
@@ -14,22 +25,3 @@
     </ul>
   </nav>
 </template>
-
-<script setup>
-//Components
-import NavItem from '@/components/Navigation/NavItem.vue'
-import { PAGE } from '@/constants.js'
-import { ChartBarIcon, ClockIcon, ListBulletIcon } from '@heroicons/vue/24/outline/index.js'
-
-const props = defineProps(['currentPage'])
-
-const emit = defineEmits(['navigate'])
-
-const navItems = {
-  [PAGE.TIMELINE]: ClockIcon,
-  [PAGE.ACTIVITIES]: ListBulletIcon,
-  [PAGE.PROGRESS]: ChartBarIcon
-}
-
-defineExpose([props, navItems])
-</script>
