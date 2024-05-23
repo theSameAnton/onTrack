@@ -1,4 +1,4 @@
-import { ChartBarIcon, ClockIcon, ListBulletIcon } from '@heroicons/vue/24/outline/index.js'
+import { ChartBarIcon, ClockIcon, ListBulletIcon } from '@heroicons/vue/24/outline/index'
 
 export const PAGE = Object.freeze({
   TIMELINE: 'timeline',
@@ -11,3 +11,5 @@ export const navItems = {
   [PAGE.ACTIVITIES]: ListBulletIcon,
   [PAGE.PROGRESS]: ChartBarIcon
 }
+
+export const HOURS_IN_DAY = 24
