@@ -1,6 +1,6 @@
 <script setup>
-import { CheckCircleIcon } from '@heroicons/vue/24/solid/index.js'
-import { PAGE } from '@/constants.js'
+import { CheckCircleIcon } from '@heroicons/vue/24/solid/index'
+import { PAGE } from '@/constants'
 </script>
 
 <template>

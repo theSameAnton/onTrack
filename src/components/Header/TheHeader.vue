@@ -1,6 +1,6 @@
 <script setup>
-import TheLogo from '@/components/Header/TheLogo.vue'
-import TheHeaderProgress from '@/components/Header/TheHeaderProgress.vue'
+import TheLogo from '@/components/Header/TheLogo'
+import TheHeaderProgress from '@/components/Header/TheHeaderProgress'
 
 const emit = defineEmits(['goToTimeline', 'goToProgress'])
 </script>
