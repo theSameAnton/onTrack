@@ -1,14 +1,19 @@
 <script setup>
 import TimelineItem from '@/components/TimelineItem'
 
-defineProps(['timelineItems'])
+const props = defineProps({
+  timelineItems: {
+    type: Array,
+    required: true
+  }
+})
 </script>
 
 <template>
   <div class="mt-7">
     <ul>
       <TimelineItem
-        v-for="timelineItem in timelineItems"
+        v-for="timelineItem in props.timelineItems"
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
       />

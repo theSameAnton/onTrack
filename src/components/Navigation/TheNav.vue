@@ -2,7 +2,12 @@
 import NavItem from '@/components/Navigation/NavItem'
 import { navItems } from '@/constants'
 
-const props = defineProps(['currentPage'])
+const props = defineProps({
+  currentPage: {
+    type: String,
+    required: true
+  }
+})
 
 const emit = defineEmits(['navigate'])
 
