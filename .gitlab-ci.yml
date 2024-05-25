@@ -5,15 +5,10 @@ stages:
 variables:
   NODE_ENV: production
 
-cache:
-  paths:
-    - node_modules/
-
 build:
   stage: build
-  image: node:16
   script:
-    - npm ci
+    - npm install
     - npm run build
   artifacts:
     paths:
@@ -22,14 +17,14 @@ build:
 deploy:
   stage: deploy
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - which ssh-agent || ( brew install openssh )
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
   script:
-    - apt-get update -qq && apt-get install -y -qq sshpass
+    - brew install sshpass
     - sshpass -p "$SSH_PASSWORD" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:$SSH_PATH
   only:
     - main
