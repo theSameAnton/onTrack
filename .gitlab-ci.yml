@@ -1,0 +1,31 @@
+stages:
+  - build
+  - deploy
+
+# Variables for build and deploy
+variables:
+  NODE_ENV: production
+
+cache:
+  paths:
+    - node_modules/
+
+# Build the Vue.js project
+build:
+  stage: build
+  image: node:21
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+# Deploy the built project to the server
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qq && apt-get install -y -qq sshpass
+    - sshpass -p "$SSH_PASSWORD" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:$SSH_PATH
+  only:
+    - master
