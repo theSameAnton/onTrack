@@ -2,7 +2,6 @@ stages:
   - build
   - deploy
 
-# Variables for build and deploy
 variables:
   NODE_ENV: production
 
@@ -10,22 +9,27 @@ cache:
   paths:
     - node_modules/
 
-# Build the Vue.js project
 build:
   stage: build
   image: node:21
   script:
-    - npm install
+    - npm ci
     - npm run build
   artifacts:
     paths:
       - dist/
 
-# Deploy the built project to the server
 deploy:
   stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
   script:
     - apt-get update -qq && apt-get install -y -qq sshpass
     - sshpass -p "$SSH_PASSWORD" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:$SSH_PATH
   only:
-    - master
+    - main
