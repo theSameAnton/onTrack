@@ -7,6 +7,7 @@ variables:
 
 before_script:
   - echo "Running on Shell Executor"
+  - export PATH=$PATH:$(npm bin)
   - node -v
   - npm -v
 
@@ -16,7 +17,6 @@ build:
     - shell
   script:
     - npm install
-    - npm install -g vite
     - npm run build
   artifacts:
     paths:
