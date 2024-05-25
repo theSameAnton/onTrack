@@ -1,3 +1,5 @@
+image: node:16
+
 stages:
   - build
   - deploy
@@ -5,36 +7,28 @@ stages:
 variables:
   NODE_ENV: production
 
+cache:
+  paths:
+    - node_modules/
+
 before_script:
-  - echo "Running on Shell Executor"
-  - export PATH=$PATH:$(npm bin)
-  - node -v
-  - npm -v
+  - npm install
 
 build:
   stage: build
-  tags:
-    - shell
   script:
-    - npm install
     - npm run build
   artifacts:
     paths:
-      - dist/
+      - public
+    expire_in: 1 week
 
-deploy:
+pages:
   stage: deploy
-  tags:
-    - shell
-  before_script:
-    - which ssh-agent || ( brew install openssh )
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
   script:
-    - brew install sshpass
-    - sshpass -p "$SSH_PASSWORD" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:$SSH_PATH
+    - mv public public
+  artifacts:
+    paths:
+      - public
   only:
     - main
