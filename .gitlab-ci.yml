@@ -7,6 +7,9 @@ variables:
 
 build:
   stage: build
+  before_script:
+    - node -v
+    - npm -v
   script:
     - npm install
     - npm run build
