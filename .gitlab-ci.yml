@@ -5,11 +5,15 @@ stages:
 variables:
   NODE_ENV: production
 
+before_script:
+  - echo "Running on Shell Executor"
+  - node -v
+  - npm -v
+
 build:
   stage: build
-  before_script:
-    - node -v
-    - npm -v
+  tags:
+    - shell
   script:
     - npm install
     - npm run build
@@ -19,6 +23,8 @@ build:
 
 deploy:
   stage: deploy
+  tags:
+    - shell
   before_script:
     - which ssh-agent || ( brew install openssh )
     - eval $(ssh-agent -s)
