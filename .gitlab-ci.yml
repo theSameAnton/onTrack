@@ -2,7 +2,6 @@ image: node:16
 
 stages:
   - build
-  - deploy
 
 variables:
   NODE_ENV: production
@@ -27,20 +26,3 @@ build:
   artifacts:
     paths:
       - dist/
-
-deploy:
-  stage: deploy
-  tags:
-    - shell
-  before_script:
-    - which ssh-agent || ( brew install openssh )
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-  script:
-    - brew install sshpass
-    - sshpass -p "$SSH_PASSWORD" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:$SSH_PATH
-  only:
-    - main
