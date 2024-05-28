@@ -23,6 +23,8 @@ build:
   script:
     - npm install
     - npm run build
+  cache:
+    key: none
   artifacts:
     paths:
       - dist/
