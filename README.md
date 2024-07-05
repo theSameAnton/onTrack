@@ -2,10 +2,6 @@
 
 Pet-project using Vue 3 Composition API and Vite
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
 
 ```sh
