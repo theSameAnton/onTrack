@@ -3,10 +3,11 @@
   "tabWidth": 2,
   "semi": false,
   "singleQuote": true,
-  "printWidth": 100,
+  "printWidth": 120,
   "bracketSpacing": true,
   "endOfLine": "auto",
   "arrowParens": "avoid",
   "htmlWhitespaceSensitivity": "ignore",
-  "bracketSameLine": false
+  "bracketSameLine": false,
+  "singleAttributePerLine": true
 }
