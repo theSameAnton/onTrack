@@ -4,6 +4,10 @@ import { PAGE } from '@/constants'
 
 <template>
   <a :href="`#${PAGE.TIMELINE}`">
-    <img alt="OnTrack logo" src="@/assets/img/icon.png" class="h-9" />
+    <img
+      alt="OnTrack logo"
+      src="@/assets/img/icon.png"
+      class="h-9"
+    />
   </a>
 </template>

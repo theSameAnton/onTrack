@@ -24,7 +24,10 @@ defineExpose([props, navItems])
         :class="{ 'bg-gray-200 duration-150 pointer-events-none': page === currentPage }"
         @click="emit('navigate', page)"
       >
-        <component :is="icons" class="h-6 w-6" />
+        <component
+          :is="icons"
+          class="h-6 w-6"
+        />
         {{ page }}
       </NavItem>
     </ul>

@@ -11,6 +11,7 @@ import { ref } from 'vue'
 const timelineItems = generateTimelineItems()
 
 const currentPage = ref(normalizeGetPath())
+const activities = ['Coding', 'Reading', 'Training']
 
 const goTo = page => {
   currentPage.value = page
@@ -18,11 +19,23 @@ const goTo = page => {
 </script>
 
 <template>
-  <TheHeader @go-to-timeline="goTo(PAGE.TIMELINE)" @go-to-progress="goTo(PAGE.PROGRESS)" />
+  <TheHeader
+    @go-to-timeline="goTo(PAGE.TIMELINE)"
+    @go-to-progress="goTo(PAGE.PROGRESS)"
+  />
   <main class="flex-grow flex-col">
-    <TheActivities v-show="currentPage === PAGE.ACTIVITIES" />
-    <TheTimeline v-show="currentPage === PAGE.TIMELINE" :timeline-items="timelineItems" />
+    <TheActivities
+      v-show="currentPage === PAGE.ACTIVITIES"
+      :activities="activities"
+    />
+    <TheTimeline
+      v-show="currentPage === PAGE.TIMELINE"
+      :timeline-items="timelineItems"
+    />
     <TheProgress v-show="currentPage === PAGE.PROGRESS" />
   </main>
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav
+    :current-page="currentPage"
+    @navigate="goTo($event)"
+  />
 </template>

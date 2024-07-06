@@ -5,11 +5,17 @@ import { PAGE } from '@/constants'
 
 <template>
   <a :href="`#${PAGE.PROGRESS}`">
-    <div v-if="true" class="flex items-center gap-1">
+    <div
+      v-if="true"
+      class="flex items-center gap-1"
+    >
       Day completed!
       <CheckCircleIcon class="h-7 text-green-500" />
     </div>
-    <div v-else class="flex items-center gap-1">
+    <div
+      v-else
+      class="flex items-center gap-1"
+    >
       <div>
         Progress:
         <span class="font-mono">20%</span>
