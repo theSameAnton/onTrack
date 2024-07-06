@@ -19,3 +19,8 @@ export const PERIOD_SELECT_OPTIONS = [
   { value: 30, label: '0:30' },
   { value: 45, label: '0:45' }
 ]
+
+export const BUTTON_TYPE = Object.freeze({
+  DEFAULT: 'default',
+  DANGER: 'danger'
+})

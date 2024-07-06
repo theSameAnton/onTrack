@@ -5,6 +5,10 @@ const props = defineProps({
   timelineItems: {
     type: Array,
     required: true
+  },
+  activitySelectOptions: {
+    type: Array,
+    required: true
   }
 })
 </script>
@@ -16,6 +20,7 @@ const props = defineProps({
         v-for="timelineItem in props.timelineItems"
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
+        :activity-select-options="props.activitySelectOptions"
       />
     </ul>
   </div>

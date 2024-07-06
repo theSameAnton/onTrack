@@ -7,14 +7,12 @@ const props = defineProps({
   timelineItem: {
     type: Object,
     required: true
+  },
+  activitySelectOptions: {
+    required: true,
+    type: Array
   }
 })
-
-const options = [
-  { value: 1, label: 'Coding' },
-  { value: 2, label: 'Reading' },
-  { value: 3, label: 'Training' }
-]
 
 const selectedActivityId = ref(1)
 </script>
@@ -25,7 +23,7 @@ const selectedActivityId = ref(1)
   >
     <TimelineHour :hour="props.timelineItem.hour" />
     <BaseSelect
-      :options="options"
+      :options="activitySelectOptions"
       placeholder="Rest"
       :selected="selectedActivityId"
       @select="selectedActivityId = $event"
