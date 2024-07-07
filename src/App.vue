@@ -31,27 +31,29 @@ const addActivity = activity => {
 </script>
 
 <template>
-  <TheHeader
-    @go-to-timeline="goTo(PAGE.TIMELINE)"
-    @go-to-progress="goTo(PAGE.PROGRESS)"
-  />
-  <main class="flex-grow flex-col">
-    <TheActivities
-      v-show="currentPage === PAGE.ACTIVITIES"
-      :activities="activities"
-      :activity-select-options="activitySelectOptions"
-      @delete-activity="deleteActivity"
-      @add-activity="addActivity"
+  <div class="flex flex-col h-screen">
+    <TheHeader
+      @go-to-timeline="goTo(PAGE.TIMELINE)"
+      @go-to-progress="goTo(PAGE.PROGRESS)"
     />
-    <TheTimeline
-      v-show="currentPage === PAGE.TIMELINE"
-      :timeline-items="timelineItems"
-      :activity-select-options="activitySelectOptions"
+    <main class="flex-grow flex flex-col">
+      <TheActivities
+        v-show="currentPage === PAGE.ACTIVITIES"
+        :activities="activities"
+        :activity-select-options="activitySelectOptions"
+        @delete-activity="deleteActivity"
+        @add-activity="addActivity"
+      />
+      <TheTimeline
+        v-show="currentPage === PAGE.TIMELINE"
+        :timeline-items="timelineItems"
+        :activity-select-options="activitySelectOptions"
+      />
+      <TheProgress v-show="currentPage === PAGE.PROGRESS" />
+    </main>
+    <TheNav
+      :current-page="currentPage"
+      @navigate="goTo($event)"
     />
-    <TheProgress v-show="currentPage === PAGE.PROGRESS" />
-  </main>
-  <TheNav
-    :current-page="currentPage"
-    @navigate="goTo($event)"
-  />
+  </div>
 </template>

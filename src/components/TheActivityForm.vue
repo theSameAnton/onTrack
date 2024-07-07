@@ -1,16 +1,23 @@
 <script setup>
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import BaseButton from '@/components/Base/BaseButton.vue'
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 
 const emit = defineEmits(['addActivity'])
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   emit('addActivity', activity.value)
-  activity.value = null
+  activity.value = ''
+
+  await nextTick()
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  })
 }
 
-const activity = ref(null)
+const activity = ref('')
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const activity = ref(null)
       class="w-full rounded border text-xl px-4"
       v-model="activity"
     />
-    <BaseButton :disabled="!activity">
+    <BaseButton :disabled="activity.trim() === ''">
       <PlusIcon class="h-8" />
     </BaseButton>
   </form>
