@@ -9,7 +9,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['navigate'])
+defineEmits(['navigate'])
 
 defineExpose([props, navItems])
 </script>
@@ -22,7 +22,7 @@ defineExpose([props, navItems])
         :key="page"
         :href="`#${page}`"
         :class="{ 'bg-gray-200 duration-150 pointer-events-none': page === currentPage }"
-        @click="emit('navigate', page)"
+        @click="$emit('navigate', page)"
       >
         <component
           :is="icons"

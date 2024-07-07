@@ -14,7 +14,7 @@ const props = defineProps({
   }
 })
 
-const selectedActivityId = ref(1)
+const selectedActivityId = ref(null)
 </script>
 
 <template>

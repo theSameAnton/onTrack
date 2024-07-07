@@ -2,6 +2,7 @@
 import BaseButton from '@/components/Base/BaseButton.vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed } from 'vue'
+import { BUTTON_TYPE } from '@/constants'
 
 const props = defineProps({
   options: {
@@ -26,7 +27,10 @@ const isNotSelected = computed(() => {
 
 <template>
   <div class="flex gap-2">
-    <BaseButton @click="$emit('select', null)">
+    <BaseButton
+      :type="BUTTON_TYPE.REGULAR"
+      @click="$emit('select', null)"
+    >
       <XMarkIcon class="h-8" />
     </BaseButton>
     <select

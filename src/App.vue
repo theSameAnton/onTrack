@@ -11,12 +11,20 @@ import { ref } from 'vue'
 const timelineItems = generateTimelineItems()
 
 const currentPage = ref(normalizeGetPath())
-const activities = ['Coding', 'Reading', 'Training']
+const activities = ref(['Coding', 'Reading', 'Training'])
 
-const activitySelectOptions = generateActivitySelectOptions(activities)
+const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
 const goTo = page => {
   currentPage.value = page
+}
+
+const deleteActivity = activity => {
+  activities.value.splice(activities.value.indexOf(activity), 1)
+}
+
+const addActivity = activity => {
+  activities.value.push(activity)
 }
 </script>
 
@@ -30,6 +38,8 @@ const goTo = page => {
       v-show="currentPage === PAGE.ACTIVITIES"
       :activities="activities"
       :activity-select-options="activitySelectOptions"
+      @delete-activity="deleteActivity"
+      @add-activity="addActivity"
     />
     <TheTimeline
       v-show="currentPage === PAGE.TIMELINE"

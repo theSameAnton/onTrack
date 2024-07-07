@@ -21,6 +21,7 @@ export const PERIOD_SELECT_OPTIONS = [
 ]
 
 export const BUTTON_TYPE = Object.freeze({
-  DEFAULT: 'default',
+  REGULAR: 'regular',
+  PRIMARY: 'primary',
   DANGER: 'danger'
 })
