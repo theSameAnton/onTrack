@@ -24,7 +24,9 @@ const deleteActivity = activity => {
 }
 
 const addActivity = activity => {
-  activities.value.push(activity)
+  if (activity != null && activity.trim() !== '') {
+    activities.value.push(activity)
+  }
 }
 </script>
 
