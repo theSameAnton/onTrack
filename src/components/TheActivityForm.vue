@@ -2,12 +2,17 @@
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import BaseButton from '@/components/Base/BaseButton.vue'
 import { ref, nextTick } from 'vue'
+import { id } from '@/functions.js'
 
 const emit = defineEmits(['addActivity'])
 
 const handleSubmit = async () => {
-  emit('addActivity', activity.value)
-  activity.value = ''
+  emit('addActivity', {
+    id: id(),
+    name: name.value,
+    secondsToComplete: 0
+  })
+  name.value = ''
 
   await nextTick()
 
@@ -17,7 +22,7 @@ const handleSubmit = async () => {
   })
 }
 
-const activity = ref('')
+const name = ref('')
 </script>
 
 <template>
@@ -29,9 +34,9 @@ const activity = ref('')
       type="text"
       placeholder="Add an activity"
       class="w-full rounded border text-xl px-4"
-      v-model="activity"
+      v-model="name"
     />
-    <BaseButton :disabled="activity.trim() === ''">
+    <BaseButton :disabled="name.trim() === ''">
       <PlusIcon class="h-8" />
     </BaseButton>
   </form>

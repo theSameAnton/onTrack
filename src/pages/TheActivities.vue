@@ -19,8 +19,8 @@ const props = defineProps({
       class="grow divide-y overflow-auto"
     >
       <ActivityItem
-        v-for="(activity, index) in props.activities"
-        :key="index"
+        v-for="activity in props.activities"
+        :key="activity.id"
         :activity="activity"
         @delete-activity="$emit('deleteActivity', activity)"
       />

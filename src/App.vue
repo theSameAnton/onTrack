@@ -5,15 +5,17 @@ import TheActivities from '@/pages/TheActivities'
 import TheTimeline from '@/pages/TheTimeline'
 import TheProgress from '@/pages/TheProgress'
 import { PAGE } from '@/constants'
-import { normalizeGetPath, generateTimelineItems, generateActivitySelectOptions } from '@/functions'
-import { ref } from 'vue'
+import { normalizeGetPath, generateTimelineItems, generateActivitySelectOptions, generateActivities } from '@/functions'
+import { computed, ref } from 'vue'
 
 const timelineItems = generateTimelineItems()
 
 const currentPage = ref(normalizeGetPath())
-const activities = ref(['Coding', 'Reading', 'Training'])
+const activities = ref(generateActivities())
 
-const activitySelectOptions = generateActivitySelectOptions(activities.value)
+const activitySelectOptions = computed(() => {
+  return generateActivitySelectOptions(activities.value)
+})
 
 const goTo = page => {
   currentPage.value = page
@@ -24,7 +26,7 @@ const deleteActivity = activity => {
 }
 
 const addActivity = activity => {
-  if (activity != null && activity.trim() !== '') {
+  if (activity.name != null && activity.name.trim() !== '') {
     activities.value.push(activity)
   }
 }

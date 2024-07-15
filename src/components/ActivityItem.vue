@@ -8,14 +8,14 @@ import { PERIOD_SELECT_OPTIONS } from '@/constants'
 
 defineProps({
   activity: {
-    type: String,
+    type: Object,
     required: true
   }
 })
 
 defineEmits(['deleteActivity'])
 
-const secondsToComplete = ref(null)
+const secondsToComplete = ref(0)
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const secondsToComplete = ref(null)
       >
         <TrashIcon class="h-8" />
       </BaseButton>
-      <span class="truncate text-2xl">{{ activity }}</span>
+      <span class="truncate text-2xl">{{ activity.name }}</span>
     </div>
     <div>
       <BaseSelect
